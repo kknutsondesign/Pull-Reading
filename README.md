@@ -20,6 +20,7 @@ options:
 -  -k, --key API_KEY          API key, overwrites hardcoded key.
 -  -l, --library LIBRARY_ID   Library ID, overwrites debug library ID.
 -  -u, --useMissing           Whether to use a progress.json or missing.json
+-  -f, --useFuzzyMatching     Whether to 
 </pre>
 ## Goodreads
 Using progresses.py will save your reading history as .json but also output a CSV compatible with Goodreads book importing
