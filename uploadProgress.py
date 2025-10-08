@@ -123,6 +123,8 @@ for jBook in bookJSON:
         continue
 
     if not args.useFuzzyMatching:
+        print(f"{f"=== Missing {jBook["media"]["metadata"]["title"]} ===":^60}")
+        missingBooks.append(prog)
         continue
 
 
