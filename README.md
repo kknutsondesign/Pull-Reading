@@ -7,7 +7,7 @@ usage: progresses.py [-h] [-H HOST] [-k KEY] [-p] [-t]
 options:
 -  -H, --host HOST_URL  ABS host, overwrites hardcoded host.
 -  -k, --key API_KEY    API key, overwrites hardcoded key.
--  -p, --pull           Pull new reading history from the host.
+-  -p, --pull           Pull new reading history to overwrite existing progress.json.
 -  -t, --test           Run script but do not do any file manipulation.
 </pre>
 
