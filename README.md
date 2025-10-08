@@ -19,8 +19,8 @@ options:
 -  -H, --host HOST_URL        ABS host, overwrites hardcoded host.
 -  -k, --key API_KEY          API key, overwrites hardcoded key.
 -  -l, --library LIBRARY_ID   Library ID, overwrites debug library ID.
--  -u, --useMissing           Whether to use a progress.json or missing.json
--  -f, --useFuzzyMatching     Whether to 
+-  -u, --useMissing           Use missing.json instead of progress.json
+-  -f, --useFuzzyMatching     Use fuzzy matching when there is no ASIN/ISBN
 </pre>
 ## Goodreads
 Using progresses.py will save your reading history as .json but also output a CSV compatible with Goodreads book importing
