@@ -14,7 +14,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-H","--host", action='store',help="ABS host, overwrites hardcoded host.")
 parser.add_argument("-k","--key", action='store',help="API key, overwrites hardcoded key.")
 parser.add_argument("-l","--library", action='store',help="Library ID, overwrites debug library ID.")
-parser.add_argument("-u","--useMissing", action='store_true',help="Whether to use a progress.json or missing.json")
+parser.add_argument("-u","--useMissing", action='store_true',help="Use missing.json instead of progress.json")
+parser.add_argument("-f","--useFuzzyMatching", action='store_true',help="Use fuzzy matching when there is no ASIN/ISBN")
 args = parser.parse_args()
 
 
@@ -95,6 +96,7 @@ else:
 foundBooks = {}
 missingBooks = []
 for jBook in bookJSON:
+    skipFuzzyMatch = False
     prog = jBook["progress"]
     prog["newLibraryItemId"] = None
     
@@ -112,8 +114,16 @@ for jBook in bookJSON:
                     break    
 
             if prog["newLibraryItemId"] != None:
-                foundBooks.append(prog)
-                continue
+                print(f"{f"=== Found {jBook["media"]["metadata"]["title"]} ===":^60}")
+                foundBooks[prog["newLibraryItemId"]] = prog
+                skipFuzzyMatch = True
+                break
+    
+    if skipFuzzyMatch:
+        continue
+
+    if not args.useFuzzyMatching:
+        continue
 
 
     ### Fuzzy Matching ###
@@ -148,7 +158,6 @@ for jBook in bookJSON:
             hits.append(k["libraryItem"])
         
         for s in resp.json()["series"]:
-            print(f"{f"Books in ":>30}{s["series"]["name"]}")
             hits += s["books"]
 
 
